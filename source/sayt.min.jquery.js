@@ -53,4 +53,21 @@
  *
  *******************************************************************************
  */
-(function(e){e.fn.sayt=function(t){function l(t){var r="";jQuery.each(t,function(e,t){r=r+t.name+":::--FIELDANDVARSPLITTER--:::"+t.value+":::--FORMSPLITTERFORVARS--:::"});e.cookie(s,r,{expires:n["days"]});if(typeof Storage!=="undefined"){localStorage.setItem(s,r)}else{e.cookie(s,r,{expires:n["days"]})}}function c(e,t,n){var r=(e+"").indexOf(t,n||0);return r===-1?false:r}function h(t,n){var r=e.extend({},t);var s=r.find("[data-sayt-exclude]");s.remove();for(i in n){s=r.find(n[i]);s.remove()}var o=r.serializeArray();return o}var n=e.extend({prefix:"autosaveFormCookie-",erase:false,days:3,autosave:true,savenow:false,recover:false,autorecover:true,checksaveexists:false,exclude:[]},t);var r=this;var s=n.prefix+r.attr("id");if(n["erase"]==true){e.cookie(s,null);if(typeof Storage!=="undefined"){localStorage.removeItem(s)}else{e.cookie(s,null)}return true}var o;if(typeof Storage!=="undefined"){o=localStorage.getItem(s)}else{o=e.cookie(s)}if(n["checksaveexists"]==true){if(o){return true}else{return false}return false}if(n["savenow"]==true){var u=h(r,n["exclude"]);l(u);return true}if(n["autorecover"]==true||n["recover"]==true){if(o){var a=o.split(":::--FORMSPLITTERFORVARS--:::");var f={};e.each(a,function(t,n){var r=n.split(":::--FIELDANDVARSPLITTER--:::");if(e.trim(r[0])!=""){if(e.trim(r[0])in f){f[e.trim(r[0])]=f[e.trim(r[0])]+":::--MULTISELECTSPLITTER--:::"+r[1]}else{f[e.trim(r[0])]=r[1]}}});e.each(f,function(t,n){if(c(n,":::--MULTISELECTSPLITTER--:::")>0){var r=n.split(":::--MULTISELECTSPLITTER--:::");e.each(r,function(n,r){e('input[name="'+t+'"], select[name="'+t+'"], textarea[name="'+t+'"]').find('[value="'+r+'"]').prop("selected",true);e('input[name="'+t+'"][value="'+r+'"], select[name="'+t+'"][value="'+r+'"], textarea[name="'+t+'"][value="'+r+'"]').prop("checked",true)})}else{e('input[name="'+t+'"], select[name="'+t+'"], textarea[name="'+t+'"]').val([n])}})}if(n["recover"]==true){return true}}if(n["autosave"]==true){this.find("input, select, textarea").each(function(t){e(this).change(function(){var e=h(r,n["exclude"]);l(e)});e(this).keyup(function(){var e=h(r,n["exclude"]);l(e)})})}}})(jQuery)
+!function(e){e.fn.sayt=function(t){function a(t){var a=""
+jQuery.each(t,function(e,t){a=a+t.name+":::--FIELDANDVARSPLITTER--:::"+t.value+":::--FORMSPLITTERFORVARS--:::"}),"undefined"!=typeof Storage?localStorage.setItem(u,a):e.cookie(u,a,{expires:o.days})}function r(e,t,a){var r=(e+"").indexOf(t,a||0)
+return-1===r?!1:r}function n(t,a){var r=e.extend({},t),n=r.find("[data-sayt-exclude]")
+n.remove()
+for(i in a)n=r.find(a[i]),n.remove()
+var o=r.serializeArray()
+return o}var o=e.extend({prefix:"autosaveFormCookie-",erase:!1,days:3,autosave:!0,savenow:!1,recover:!1,autorecover:!0,checksaveexists:!1,exclude:[]},t),c=this,u=o.prefix+c.attr("id")
+if(1==o.erase)return e.cookie(u,null),"undefined"!=typeof Storage&&localStorage.removeItem(u),!0
+var f
+if(f="undefined"!=typeof Storage?localStorage.getItem(u):e.cookie(u),1==o.checksaveexists)return f?!0:!1
+if(1==o.savenow){var s=n(c,o.exclude)
+return a(s),!0}if(1==o.autorecover||1==o.recover){if(f){var v=f.split(":::--FORMSPLITTERFORVARS--:::"),l={}
+e.each(v,function(t,a){var r=a.split(":::--FIELDANDVARSPLITTER--:::")
+""!=e.trim(r[0])&&(e.trim(r[0])in l?l[e.trim(r[0])]=l[e.trim(r[0])]+":::--MULTISELECTSPLITTER--:::"+r[1]:l[e.trim(r[0])]=r[1])}),e.each(l,function(t,a){if(r(a,":::--MULTISELECTSPLITTER--:::")>0){var n=a.split(":::--MULTISELECTSPLITTER--:::")
+e.each(n,function(a,r){e('input[name="'+t+'"], select[name="'+t+'"], textarea[name="'+t+'"]',e(c)).find('[value="'+r+'"]').prop("selected",!0),e('input[name="'+t+'"][value="'+r+'"], select[name="'+t+'"][value="'+r+'"], textarea[name="'+t+'"][value="'+r+'"]',e(c)).prop("checked",!0)})}else e('input[name="'+t+'"], select[name="'+t+'"], textarea[name="'+t+'"]',e(c)).val([a])})}if(1==o.recover)return!0}1==o.autosave&&this.find("input, select, textarea").each(function(){e(this).change(function(){var e=n(c,o.exclude)
+a(e)}),e(this).keyup(function(){var e=n(c,o.exclude)
+a(e)})})}}(jQuery)
+
